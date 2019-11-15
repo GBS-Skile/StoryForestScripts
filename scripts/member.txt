@@ -1,0 +1,850 @@
+
+STATE InputName
+> {msg}님이라고 부르면 괜찮을까요?
+SET context_User_name "{msg}"
+
+
+
+STATE NameCheck
+> {User_name}님이라고 부르면 괜찮을까요?
+GOTO NameCheck
+< 응
+  > 반갑습니다, {User_name}님!
+  > 사랑나무에 오신 것을 환영해요.
+  > 사랑나무에 대해서 다시 한번 설명하자면
+  > 사랑나무에서는 사용님의 소중한 사람, 고마운 사람에 대해 이야기를 나눌 수 있어요.사랑나무에서는 사용자님의 소중한 사람의 의미와 서로만 알고있는 모습이나 특징, 소중한 사람과 함께하면서 변한 점을 이야기하면서 동시에 소중한 사람에게 사용자님 역시 얼마나 소중한 존재인지에 대해서 이야기를 하실 수 있어요.
+  > 이제 {User_name}님의 소중한 사람에 대해 이야기해 볼게요.
+  > 이야기하고 싶은 소중한 이는 누구인가요?
+  > 채팅창 위에 있는 소중한 이 리스트를 참고하셔도 되고, 그냥 직접 자유롭게 입력해주셔도 좋아요.
+  > 단, 명사로 입력해주세요.
+  GOTO InputActivity
+< 아니, 다르게 불러줘
+  > 그렇다면 어떻게 불러드릴까요?
+  GOTO InputName
+
+
+
+STATE Default
+  > 반갑습니다, {User_name}님!
+  > 사랑나무에 오신 것을 환영해요.
+  > 사랑나무에 대해서 다시 한번 설명하자면
+  > 사랑나무에서는 사용님의 소중한 사람, 고마운 사람에 대해 이야기를 나눌 수 있어요.사랑나무에서는 사용자님의 소중한 사람의 의미와 서로만 알고있는 모습이나 특징, 소중한 사람과 함께하면서 변한 점을 이야기하면서 동시에 소중한 사람에게 사용자님 역시 얼마나 소중한 존재인지에 대해서 이야기를 하실 수 있어요.
+  > 이제 {User_name}님의 소중한 사람에 대해 이야기해 볼게요.
+  > 이야기하고 싶은 소중한 이는 누구인가요?
+
+> 채팅창 위에 있는 소중한 이 리스트를 참고하셔도 되고, 그냥 직접 자유롭게 입력해주셔도 좋아요.
+> 단, 명사로 입력해주세요.
+IF User_name exists False
+  > 안녕하세요.
+  > 본격적으로 대화를 나누기 전에, 사용자님을 뭐라고 부르면 좋을지 말씀해주세요!
+  GOTO InputName
+
+
+STATE InputActivity
+: 어머니
+: 아버지
+: 형제자매
+: 선생님
+: 멘토
+: 스승
+: 선배
+: 작가
+: 롤모델
+: 이웃집
+: 친척
+: 할머니
+: 할아버지
+> {msg}에 대해 얘기해볼까요?
+SET context_Dialog_member "{msg}"
+SET platform_tree_name "{msg} 사랑나무"
+
+
+STATE 0
+< 응
+  > 좋아요. {User_name}님과 {Dialog_member}님은 무슨 관계인가요?(0)
+< 아니
+  > 그렇다면 이야기하고 싶은 소중한 이가 누구인가요??
+  GOTO InputActivity
+
+
+
+
+STATE m0
+
+STATE 1
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님은 {User_name}님에게 어떠한 존재인가요?(1)
+
+
+
+
+STATE m1
+
+STATE 2
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님과 언제 처음 만났나요?(2)
+
+
+
+STATE m2
+
+STATE 3
+GOTOSELF
+< 다음 질문으로
+> {User_name}님과 {Dialog_member}님은 주로 어떠한 경험이나 활동을 같이 하나요?(3)
+
+
+
+STATE m3
+
+STATE 4
+GOTOSELF
+< 다음 질문으로
+> 그러한 경험 중 가장 기억에 남는 순간은 언제였나요?(4)
+
+
+
+
+STATE m4
+
+STATE 5
+GOTOSELF
+< 다음 질문으로
+> 그 때의 {User_name}님의 감정과 기분은 어땠나요?(5)
+
+
+
+STATE m5
+
+STATE 6
+GOTOSELF
+< 다음 질문으로
+> 왜 그렇게 느끼시나요?(6)
+
+
+
+STATE m6
+
+STATE 7
+GOTOSELF
+< 다음 질문으로
+> 왜 {Dialog_member}님은 {User_name}님과 그러한 경험을 같이 했을까요?(7)
+
+
+
+
+STATE m7
+
+STATE 8
+GOTOSELF
+< 다음 질문으로
+> 요즘은 {Dialog_member}님과 어떻게 지내시나요?(8)
+
+
+
+
+STATE m8
+
+STATE 9
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님을 생각하면 어떠한 감정과 기분이 드나요?(9)
+SET platform_tree_growthProgress 1
+
+
+STATE m9
+
+STATE 10
+GOTOSELF
+< 다음 질문으로
+> 그렇군요.
+> 이제 {Dialog_member}님이 {User_name}님에게 어떠한 변화를 주었는지에 대해 이야기해봐요!
+> {Dialog_member}님은 {User_name}님을 어떠한 방식으로 도와주거나 지지해주나요?(10)
+
+
+
+
+STATE m10
+
+STATE 11
+GOTOSELF
+< 다음 질문으로
+> 왜 {Dialog_member}님은 {User_name}님을 도와주거나 지지해줄까요?(11)
+
+
+
+STATE m11
+
+STATE 12
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님은 {User_name}님의 삶에 어떠한 변화를 주었나요?(12)
+
+
+
+
+STATE m12
+
+STATE 13
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님과 관계를 유지함에 있어서 어려운 점이나 상황은 없었나요?
+> 만약 있다면 어떻게 {Dialog_member}님과 관계를 지속할 수 있었나요?(13)
+
+
+
+
+
+
+STATE m13
+
+STATE 14
+GOTOSELF
+< 다음 질문으로
+> 어떤 계기로 {Dialog_member}님과의 관계를 유지하고 살아야겠다고 생각하게 되었나요?(14)
+
+
+
+STATE m14
+
+STATE 15
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님과의 관계로 인해 {User_name}님의 일상이 더 좋게 변했나요? 어떻게 변했나요?(15)
+
+
+
+STATE m15
+
+STATE 16
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님으로 인해 변한 {User_name}님의 모습을 잘 알 수 있는 사건이 있나요?(16)
+
+
+
+
+STATE m16
+
+STATE 17
+GOTOSELF
+< 다음 질문으로
+> 지금까지의 대화들로 미루어 봤을 때, {Dialog_member}님은 {User_name}님의 삶에 어떠한 변화를 주었나요?(17)
+
+
+
+
+
+STATE m17
+
+STATE 18
+GOTOSELF
+< 다음 질문으로
+> 왜 {Dialog_member}님이 그러한 변화를 주었나요? 그렇게 된 이유가 무엇이라 생각하세요?(18)
+
+
+
+
+STATE m18
+
+STATE 19
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님과의 관계가 {User_name}님이 삶을 살아가는 데 있어 어떠한 힘이나 기반이 될 수 있을까요?(19)
+SET platform_tree_growthProgress 2
+
+
+STATE m19
+
+STATE 20
+GOTOSELF
+< 다음 질문으로
+> 좋아요!
+> 이번에는 {Dialog_member}님이 되었다고 상상하고 {Dialog_member}님의 눈에 비친 {User_name}님에 대해 이야기를 해봐요.
+> {Dialog_member}님에게 {User_name}님은 어떠한 존재일까요?(20)
+
+
+
+STATE m20
+
+STATE 21
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님 눈에만 보이는 {User_name}님의 모습, 장점, 가치들은 어떤 것들이 있을까요?(21)
+
+
+
+
+
+STATE m21
+
+STATE 22
+GOTOSELF
+< 다음 질문으로
+> 다른 사람들은 모르지만 {Dialog_member}님만이 아는 {User_name}님의 모습은 무엇이 있을까요?
+> 남들은 모르지만 {Dialog_member}님은 알고 있는 {User_name}님의 특징이나 모습은 무엇이 있을까요?(22)
+
+
+
+
+
+
+STATE m22
+
+STATE 23
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님은 {User_name}님의 어떤 면을 인정하고 수용하고 높이 평가할까요?(23)
+
+
+
+
+
+STATE m23
+
+STATE 24
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님이 생각하기에 {User_name}님은 무엇을 중요하게 여기고 의미를 둔다고 생각할까요?(24)
+
+
+
+
+
+STATE m24
+
+STATE 25
+GOTOSELF
+< 다음 질문으로
+> 왜 {Dialog_member}님은 그렇게 생각을 할까요? 어떠한 일로 인해 그렇게 생각하는 걸까요?(25)
+
+
+STATE m25
+
+STATE 26
+GOTOSELF
+< 다음 질문으로
+> 더 나아가서 이번에는 {Dialog_member}님이 {User_name}님의 삶에 어떠한 영향을 주었는지 이야기해봐요!
+> {Dialog_member}님은 {User_name}님이 가치가 있다고 하는 것을 지지해주고 응원해주나요?
+> 만약 그랬다면 왜 그랬을까요? 어떠한 생각을 가지고 {User_name}님을 지지하고 응원했을까요?(26)
+
+
+
+
+
+
+STATE m26
+
+STATE 27
+GOTOSELF
+< 다음 질문으로
+# 112
+> {Dialog_member}님과의 관계가 {User_name}님으로 하여금 자신이 누구이고 삶이란 무엇인가에 관해 어떠한 영향을 주었을까요?(27)
+
+
+
+STATE m27
+
+STATE 28
+GOTOSELF
+< 다음 질문으로
+> {User_name}님이 {Dialog_member}님과 도움을 주거나 받는 것은 {User_name}님에게 어떤 경험이었나요?(28)
+
+
+
+
+
+STATE m28
+
+STATE 29
+GOTOSELF
+< 다음 질문으로
+> {User_name}님 입장에서 봤을 때, {Dialog_member}님을 알게 되고, {Dialog_member}님과 함께함으로써 {User_name}님의 삶은 어떻게 달라졌나요?
+> 이러한 것을 알 수 있는 이야기가 있나요?(29)
+
+
+
+
+
+
+STATE m29
+
+STATE 30
+GOTOSELF
+< 다음 질문으로
+> 마지막으로 {Dialog_member}님을 표현해주는 그림 혹은 캐릭터를 그려주세요.(30)
+APPEND platform_actions "sketch"
+
+
+STATE 31
+GOTOSELF 
+< 다음 질문으로
+> 왜 그렇게 표현하셨나요?(31)
+
+
+SET platform_tree_growthProgress 3
+
+
+
+STATE m31
+
+STATE 32
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님이 {User_name}님을 변화시킨 것처럼 {User_name}님 또한 {Dialog_member}님에게 변화시켰다고 생각해요.
+> 그렇다면 이번에는 {User_name}님께서 {Dialog_member}에게 어떠한 변화를 주었는지 알아봐요.
+> {User_name}님은 {Dialog_member}님을 어떠한 방식으로 도와주거나 지지해주나요?(32)
+
+
+
+
+
+
+STATE m32
+
+STATE 33
+GOTOSELF
+< 다음 질문으로
+> 왜 {User_name}님은 {Dialog_member}님을 도와주거나 지지하나요?(33)
+
+
+
+
+
+STATE m33
+
+STATE 34
+GOTOSELF
+< 다음 질문으로
+> {User_name}님은 {Dialog_member}님의 삶에 어떠한 변화를 주었나요? 이를 잘 알 수 있는 사건이 있나요?(34)
+
+
+
+
+
+STATE m34
+
+STATE 35
+GOTOSELF
+< 다음 질문으로
+> {User_name}님과의 관계는 {Dialog_member}님이 삶을 살아가는 데 어떤 힘과 기반이 될 수 있을까요?(35)
+
+
+
+
+STATE m35
+
+STATE 36
+GOTOSELF
+< 다음 질문으로
+> 지금까지의 대화들로 미루어 봤을 때, {User_name}님은 {Dialog_member}님의 삶에 어떠한 변화를 주었나요?(36)
+
+
+
+
+
+
+STATE m36
+
+STATE 37
+GOTOSELF
+< 다음 질문으로
+> 이번에는 {User_name}님의 눈에 비친 {Dialog_member}님에 대해서 이야기해봐요!
+> {User_name}님에게는 {Dialog_member}님은 어떠한 존재인가요?(37)
+
+
+
+
+
+
+STATE m37
+
+STATE 38
+GOTOSELF
+< 다음 질문으로
+> {User_name}님은 {Dialog_member}님의 어떤 면을 인정하고 수용하고 높이 평가할까요?(38)
+
+
+
+
+
+STATE m38
+
+STATE 39
+GOTOSELF
+< 다음 질문으로
+> {User_name}님 눈에만 보이는 {Dialog_member}님의 모습, 장점, 가치들은 어떤 것들이 있을까요?(39)
+
+
+
+
+
+
+
+STATE m39
+
+STATE 40
+GOTOSELF
+< 다음 질문으로
+> 남들은 모르지만 {User_name}님이 {Dialog_member}님의 모습이나 특징은 무엇일까요?(40)
+
+
+
+
+
+
+STATE m40
+
+STATE 41
+GOTOSELF
+< 다음 질문으로
+> {User_name}님이 생각하시기에 {Dialog_member}은 무엇을 중요하게 여기고 의미가 있다고 여기는 것 같나요?(41)
+
+
+
+
+
+
+STATE m41
+
+STATE 42
+GOTOSELF
+< 다음 질문으로
+> 왜 {User_name}님은 {Dialog_member}을 그러한 존재로 여기나요? 그것을 알게된 사건이 있나요?(42)
+SET platform_tree_growthProgress 4
+
+
+
+
+
+
+STATE m42
+
+STATE 43
+GOTOSELF
+< 다음 질문으로
+# 정체성
+> {User_name}님은 {Dialog_member}이 가치가 있다고 하는 것에 어떠한 기여나 도움을 주었나요?
+> 만약 그렇게 도와주었다면 왜 그랬나요? 어떠한 생각으로 그렇게 하셨나요?(43)
+
+
+
+
+STATE m43
+
+STATE 44
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}님이 {User_name}님에게 도움을 주거나 받거나 하는 것은 {Dialog_member}님에게 어떠한 경험이였을까요?(44)
+
+
+
+
+
+
+STATE m44
+
+STATE 45
+GOTOSELF
+< 다음 질문으로
+> {User_name}님의 관계가 그 {Dialog_member}으로 하여금 자신이 누구이고 삶이란 무엇인가에 관해 어떠한 영향을 주었나요?(45)
+
+
+
+
+
+STATE m45
+
+STATE 46
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}의 입장에서 봤을 때, {User_name}님을 알게 되고 함께하면서 {Dialog_member}의 삶은 어떻게 달라졌을 것 같나요?
+> 이러한 것을 잘 알 수 있는 이야기가 있나요?(46)
+
+
+
+STATE m46
+
+STATE 47
+GOTOSELF
+< 다음 질문으로
+> 그 {Dialog_member}에 대해 다시 한번 새롭게 그려주세요.(47)
+APPEND platform_actions "sketch"
+
+
+
+
+
+
+STATE 48
+GOTOSELF
+< 다음 질문으로
+> 그리고 {Dialog_member}로 인해 변한 {User_name}님의 모습을 그림으로 그려주세요.(48)
+APPEND platform_actions "sketch"
+
+
+
+STATE 49
+GOTOSELF
+< 다음 질문으로
+> 이러한 {Dialog_member}의 관계는 {User_name}님에게 어떠한 경험이었나요?(49)
+
+
+
+
+
+STATE m49
+
+STATE 50
+GOTOSELF
+< 다음 질문으로
+> 앞으로 {Dialog_member}과 어떠한 관계를 맞고 싶나요?(50)
+
+
+
+
+STATE m50
+
+STATE 51
+GOTOSELF
+< 다음 질문으로
+> 이를 위해서 어떠한 것들을 할 수 있을까요?(51)
+
+
+
+
+STATE m51
+
+STATE 52
+GOTOSELF
+< 다음 질문으로
+> {Dialog_member}과의 관계를 통해 어떻게 더 나아지고 싶고, 변화하고 싶나요?
+> 그리고 그러기 위해서는 어떠한 시도들을 할 수 있을까요?(52)
+SET platform_tree_growthProgress 5
+
+
+
+STATE m52
+< 다음 질문으로
+
+
+STATE 53
+GOTOSELF
+> 멋진 그림이네요.
+> {User_name}님과 {Dialog_member}에 대해
+> 얘기할 수 있어서 좋았어요.
+> 다음에 다른 이야기를 더 들려주새요~
+
+
+STATE 54
+< 다시 질문 받기
+  > 어떠한 질문을 다시 받고 싶으신가요?
+  > 질문 번호를 참조해주세요!
+
+
+STATE Final1
+GOTOSELF
+< 0번
+  > {User_name}님과 {Dialog_member}님은 무슨 관계인가요?
+
+< 1번
+  > {Dialog_member}님은 {User_name}님에게 어떠한 존재인가요?
+
+< 2번
+  > {Dialog_member}님과 언제 처음 만났나요?
+
+< 3번
+  > {User_name}님과 {Dialog_member}님은 주로 어떠한 경험이나 활동을 같이 하나요?
+
+< 4번
+  > 그러한 경험 중 가장 기억에 남는 순간은 언제였나요?
+
+< 5번
+  > 그 때의 {User_name}님의 감정과 기분은 어땠나요?
+
+< 6번
+  > 왜 그렇게 느끼시나요?
+
+< 7번
+  > 왜 {Dialog_member}님은 {User_name}님과 그러한 경험을 같이 했을까요?
+
+< 8번
+  > 요즘은 {Dialog_member}님과 어떻게 지내시나요?
+
+< 9번
+  > {Dialog_member}님을 생각하면 어떠한 감정과 기분이 드나요?(9)
+
+< 10번
+  > 그렇군요.
+  > 이제 {Dialog_member}님이 {User_name}님에게 어떠한 변화를 주었는지에 대해 이야기해봐요!
+  > {Dialog_member}님은 {User_name}님을 어떠한 방식으로 도와주거나 지지해주나요?
+
+< 11번
+  > 왜 {Dialog_member}님은 {User_name}님을 도와주거나 지지해줄까요?
+
+< 12번
+  > {Dialog_member}님은 {User_name}님의 삶에 어떠한 변화를 주었나요?
+
+< 13번
+> {Dialog_member}님과 관계를 유지함에 있어서 어려운 점이나 상황은 없었나요?
+> 만약 있다면 어떻게 {Dialog_member}님과 관계를 지속할 수 있었나요?
+
+< 14번
+> 어떤 계기로 {Dialog_member}님과의 관계를 유지하고 살아야겠다고 생각하게 되었나요?
+
+
+< 15번
+> {Dialog_member}님과의 관계로 인해 {User_name}님의 일상이 더 좋게 변했나요? 어떻게 변했나요?
+
+< 16번
+  > {Dialog_member}님으로 인해 변한 {User_name}님의 모습을 잘 알 수 있는 사건이 있나요?
+
+< 17번
+  > 지금까지의 대화들로 미루어 봤을 때, {Dialog_member}님은 {User_name}님의 삶에 어떠한 변화를 주었나요?
+
+< 18번
+  > 왜 {Dialog_member}님이 그러한 변화를 주었나요? 그렇게 된 이유가 무엇이라 생각하세요?
+
+< 19번
+  > {Dialog_member}님과의 관계가 {User_name}님이 삶을 살아가는 데 있어 어떠한 힘이나 기반이 될 수 있을까요?
+
+< 20번
+> 좋아요!
+> 이번에는 {Dialog_member}님이 되었다고 상상하고 {Dialog_member}님의 눈에 비친 {User_name}님에 대해 이야기를 해봐요.
+> {Dialog_member}님에게 {User_name}님은 어떠한 존재일까요?
+
+< 21번
+  > {Dialog_member}님 눈에만 보이는 {User_name}님의 모습, 장점, 가치들은 어떤 것들이 있을까요?
+
+< 22번
+> 다른 사람들은 모르지만 {Dialog_member}님만이 아는 {User_name}님의 모습은 무엇이 있을까요?
+> 남들은 모르지만 {Dialog_member}님은 알고 있는 {User_name}님의 특징이나 모습은 무엇이 있을까요?
+
+< 23번
+  > {Dialog_member}님은 {User_name}님의 어떤 면을 인정하고 수용하고 높이 평가할까요?
+
+< 24번
+  > {Dialog_member}님이 생각하기에 {User_name}님은 무엇을 중요하게 여기고 의미를 둔다고 생각할까요?
+
+< 25번
+  > 왜 {Dialog_member}님은 그렇게 생각을 할까요? 어떠한 일로 인해 그렇게 생각하는 걸까요?
+
+
+< 26번
+> 더 나아가서 이번에는 {Dialog_member}님이 {User_name}님의 삶에 어떠한 영향을 주었는지 이야기해봐요!
+> {Dialog_member}님은 {User_name}님이 가치가 있다고 하는 것을 지지해주고 응원해주나요?
+> 만약 그랬다면 왜 그랬을까요? 어떠한 생각을 가지고 {User_name}님을 지지하고 응원했을까요?
+
+
+< 27번
+  > {Dialog_member}님과의 관계가 {User_name}님으로 하여금 자신이 누구이고 삶이란 무엇인가에 관해 어떠한 영향을 주었을까요?
+
+< 28번
+  > {User_name}님이 {Dialog_member}님과 도움을 주거나 받는 것은 {User_name}님에게 어떤 경험이었나요?
+
+< 29번
+> {User_name}님 입장에서 봤을 때, {Dialog_member}님을 알게 되고, {Dialog_member}님과 함께함으로써 {User_name}님의 삶은 어떻게 달라졌나요?
+> 이러한 것을 알 수 있는 이야기가 있나요?
+
+< 30번
+  > 마지막으로 {Dialog_member}님을 표현해주는 그림 혹은 캐릭터를 그려주세요.(30)
+APPEND platform_actions "sketch"
+
+< 31번
+  > 왜 그렇게 표현하셨나요?
+
+< 32번
+> {Dialog_member}님이 {User_name}님을 변화시킨 것처럼 {User_name}님 또한 {Dialog_member}님에게 변화시켰다고 생각해요.
+> 그렇다면 이번에는 {User_name}님께서 {Dialog_member}에게 어떠한 변화를 주었는지 알아봐요.
+> {User_name}님은 {Dialog_member}님을 어떠한 방식으로 도와주거나 지지해주나요?
+
+
+< 33번
+> 왜 {User_name}님은 {Dialog_member}님을 도와주거나 지지하나요?
+
+
+< 34번
+  > {User_name}님은 {Dialog_member}님의 삶에 어떠한 변화를 주었나요? 이를 잘 알 수 있는 사건이 있나요?
+
+< 35번
+  > {User_name}님과의 관계는 {Dialog_member}님이 삶을 살아가는 데 어떤 힘과 기반이 될 수 있을까요?
+
+< 36번
+  > 지금까지의 대화들로 미루어 봤을 때, {User_name}님은 {Dialog_member}님의 삶에 어떠한 변화를 주었나요?
+
+< 37번
+> 이번에는 {User_name}님의 눈에 비친 {Dialog_member}님에 대해서 이야기해봐요!
+> {User_name}님에게는 {Dialog_member}님은 어떠한 존재인가요?
+
+< 38번
+  >  {User_name}님은 {Dialog_member}님의 어떤 면을 인정하고 수용하고 높이 평가할까요?
+
+
+< 39번
+  > {User_name}님 눈에만 보이는 {Dialog_member}님의 모습, 장점, 가치들은 어떤 것들이 있을까요?
+
+< 40번
+  > 남들은 모르지만 {User_name}님이 {Dialog_member}님의 모습이나 특징은 무엇일까요?
+
+< 41번
+  > {User_name}님이 생각하시기에 {Dialog_member}은 무엇을 중요하게 여기고 의미가 있다고 여기는 것 같나요?
+
+< 42번
+  > 왜 {User_name}님은 {Dialog_member}을 그러한 존재로 여기나요? 그것을 알게된 사건이 있나요?
+
+< 43번
+> {User_name}님은 {Dialog_member}이 가치가 있다고 하는 것에 어떠한 기여나 도움을 주었나요?
+> 만약 그렇게 도와주었다면 왜 그랬나요? 어떠한 생각으로 그렇게 하셨나요?(43)
+
+
+< 44번
+  > {Dialog_member}님이 {User_name}님에게 도움을 주거나 받거나 하는 것은 {Dialog_member}님에게 어떠한 경험이였을까요?
+
+< 45번
+  > {User_name}님의 관계가 그 {Dialog_member}으로 하여금 자신이 누구이고 삶이란 무엇인가에 관해 어떠한 영향을 주었나요?
+
+< 46번
+> {Dialog_member}의 입장에서 봤을 때, {User_name}님을 알게 되고 함께하면서 {Dialog_member}의 삶은 어떻게 달라졌을 것 같나요?
+> 이러한 것을 잘 알 수 있는 이야기가 있나요?
+
+< 47번
+> 그 {Dialog_member}에 대해 다시 한번 새롭게 그려주세요.
+APPEND platform_actions "sketch"
+
+< 48번
+  > 그리고 {Dialog_member}로 인해 변한 {User_name}님의 모습을 그림으로 그려주세요.
+APPEND platform_actions "sketch"
+
+
+< 49번
+  > 이러한 {Dialog_member}의 관계는 {User_name}님에게 어떠한 경험이었나요?
+
+< 50번
+  > 앞으로 {Dialog_member}과 어떠한 관계를 맞고 싶나요?
+
+< 51번
+  > 이를 위해서 어떠한 것들을 할 수 있을까요?
+
+< 52번
+> {Dialog_member}과의 관계를 통해 어떻게 더 나아지고 싶고, 변화하고 싶나요?
+> 그리고 그러기 위해서는 어떠한 시도들을 할 수 있을까요?
+
+
+
+STATE mFinal
+
+
+STATE Final2
+GOTOSELF
+< 다른 질문 다시 받기
+GOTO Final
+
+
+
+
+
+STATE End
+> ...
+GOTO End
