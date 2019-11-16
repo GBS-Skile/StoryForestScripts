@@ -51,6 +51,15 @@
             "Dialog": {
               "state": "InputActivity"
             }
+          },
+          "platform": {
+            "quick_replies": [
+              "게으름",
+              "나태함",
+              "완벽주의",
+              "조급함",
+              "성급함"
+            ]
           }
         }
       },
@@ -114,7 +123,7 @@
     ],
     "context": {
       "Dialog": {
-        "state": "InputProblem"
+        "state": "InputActivity"
       }
     },
     "platform": {
@@ -128,7 +137,7 @@
     }
   },
   {
-    "state": "InputProblem",
+    "state": "InputActivity",
     "message": [
       "{msg}에 대해 얘기해볼까요?"
     ],
@@ -190,6 +199,15 @@
             "Dialog": {
               "state": "InputActivity"
             }
+          },
+          "platform": {
+            "quick_replies": [
+              "게으름",
+              "나태함",
+              "완벽주의",
+              "조급함",
+              "성급함"
+            ]
           }
         }
       }

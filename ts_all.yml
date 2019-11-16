@@ -1,0 +1,8 @@
+version: '3'
+services:
+  ts_all:
+    volumes:
+      - './scripts:/usr/src/app/scripts'
+      - './scenarios:/usr/src/app/scenarios'
+    build:
+      context: .
