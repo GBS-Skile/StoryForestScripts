@@ -275,23 +275,7 @@ GOTOSELF
 
 
 STATE m6
-< 도움말
-  > 
-  
-   GOTO m
-< 철수: 여자친구
-  > 
-  
-    GOTO m
-< 영희: 엄마
-  > 
-  
-    GOTO m
-< 민수: 롤모델
-  > 
-  
-    GOTO m
-    
+
 
 
 STATE 7
@@ -303,23 +287,7 @@ GOTOSELF
 
 
 STATE m7
-< 도움말
-  > 
-  
-   GOTO m
-< 철수: 여자친구
-  > 
-  
-    GOTO m
-< 영희: 엄마
-  > 
-  
-    GOTO m
-< 민수: 롤모델
-  > 
-  
-    GOTO m
-    
+
 
 
 STATE 8
@@ -331,23 +299,7 @@ GOTOSELF
 
 
 STATE m8
-< 도움말
-  > 
-  
-   GOTO m
-< 철수: 여자친구
-  > 
-  
-    GOTO m
-< 영희: 엄마
-  > 
-  
-    GOTO m
-< 민수: 롤모델
-  > 
-  
-    GOTO m
-    
+   
 
 
 STATE 9
@@ -358,23 +310,6 @@ SET platform_tree_growthProgress 1
 
 
 STATE m9
-< 도움말
-  > 
-  
-   GOTO m
-< 철수: 여자친구
-  > 
-  
-    GOTO m
-< 영희: 엄마
-  > 
-  
-    GOTO m
-< 민수: 롤모델
-  > 
-  
-    GOTO m
-    
 
 
 STATE 10
