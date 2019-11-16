@@ -1,0 +1,3221 @@
+[
+  {
+    "state": "InputName",
+    "message": [
+      "{msg}님이라고 부르면 괜찮을까요?"
+    ],
+    "context": {
+      "User": {
+        "name": "{msg}"
+      },
+      "Dialog": {
+        "state": "NameCheck"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "응",
+        "아니, 다르게 불러줘"
+      ]
+    }
+  },
+  {
+    "state": "NameCheck",
+    "message": [
+      "{User_name}님이라고 부르면 괜찮을까요?"
+    ],
+    "context": {
+      "Dialog": {
+        "state": "NameCheck"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "응"
+          }
+        },
+        "then": {
+          "message": [
+            "반갑습니다. {User_name}님!",
+            "경험나무에 오신 것을 환영해요.",
+            "경험나무에 대해서 다시 한번 소개하자면",
+            "경험나무에서는 사용자님의 특정 활동에 대해 이야기를 나눌 수 있는 나무입니다.",
+            "사용자님이 그 활동을 하게 된 계기와 활동을 할 때의 기분과 생각부터 시작해서 활동을 하면서 알 수 있는 사용자님만의 개성과 변화에 대해서 이야기를 하실 수 있어요.",
+            "이제 {User_name}님의 경험을 이야기해 볼게요.",
+            "어떤 경험의 주제에 대해 이야기를 하고 싶으신가요?",
+            "채팅창 위에 있는 활동 리스트를 참고하셔도 되고,",
+            "그냥 직접 자유롭게 입력해주셔도 좋아요.",
+            "단, 명사로 입력해주세요."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "InputActivity"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "게임",
+              "운동",
+              "독서",
+              "공부",
+              "봉사",
+              "음악감상",
+              "요리",
+              "봉사",
+              "그림그리기",
+              "사진찍기",
+              "글쓰기"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "아니, 다르게 불러줘"
+          }
+        },
+        "then": {
+          "message": [
+            "그렇다면 어떻게 불러드릴까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "InputName"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "응",
+        "아니, 다르게 불러줘"
+      ]
+    }
+  },
+  {
+    "state": "Default",
+    "message": [
+      "반갑습니다. {User_name}님!",
+      "경험나무에 오신 것을 환영해요.",
+      "경험나무에 대해서 다시 한번 소개하자면",
+      "경험나무에서는 사용자님의 특정 활동에 대해 이야기를 나눌 수 있는 나무입니다.",
+      "사용자님이 그 활동을 하게 된 계기와 활동을 할 때의 기분과 생각부터 시작해서 활동을 하면서 알 수 있는 사용자님만의 개성과 변화에 대해서 이야기를 하실 수 있어요.",
+      "이제 {User_name}님의 경험을 이야기해 볼게요.",
+      "채팅창 위에 있는 활동 리스트를 참고하셔도 되고,",
+      "그냥 직접 자유롭게 입력해주셔도 좋아요.",
+      "단, 명사로 입력해주세요."
+    ],
+    "branch": [
+      {
+        "condition": {
+          "User_name": {
+            "exists": false
+          }
+        },
+        "then": {
+          "message": [
+            "안녕하세요.",
+            "본격적으로 대화를 나누기 전에,",
+            "사용자님을 뭐라고 부르면 좋을지 말씀해주세요!"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "InputName"
+            }
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "InputActivity"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "게임",
+        "운동",
+        "독서",
+        "공부",
+        "봉사",
+        "음악감상",
+        "요리",
+        "봉사",
+        "그림그리기",
+        "사진찍기",
+        "글쓰기"
+      ]
+    }
+  },
+  {
+    "state": "InputActivity",
+    "message": [
+      "{msg}에 대해 얘기해볼까요?"
+    ],
+    "context": {
+      "Dialog": {
+        "activity": "{msg}",
+        "state": "answer0"
+      }
+    },
+    "platform": {
+      "tree": {
+        "name": "{msg} 경험나무"
+      },
+      "quick_replies": [
+        "응",
+        "아니"
+      ]
+    }
+  },
+  {
+    "state": "answer0",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "응"
+          }
+        },
+        "then": {
+          "message": [
+            "좋아요. {User_name}님에게 {Dialog_activity} 활동은 어떤 뜻인가요?(0)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m0"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "아니"
+          }
+        },
+        "then": {
+          "message": [
+            "그렇다면 어떤 활동에 대해 얘기할까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "InputActivity"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "게임",
+              "운동",
+              "독서",
+              "공부",
+              "봉사",
+              "음악감상",
+              "요리",
+              "봉사",
+              "그림그리기",
+              "사진찍기",
+              "글쓰기"
+            ]
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "m0"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "도움말",
+        "영철: 독서",
+        "건우: 연애",
+        "세영: 수험공부",
+        "철수: 짝사랑"
+      ]
+    }
+  },
+  {
+    "state": "m0",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "도움말"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동에 대해 구체적으로 설명해주세요."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m0"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "영철: 독서"
+          }
+        },
+        "then": {
+          "message": [
+            "내가 관심있는 것에 대해 저자와 대화하는 것"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m0"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "건우: 연애"
+          }
+        },
+        "then": {
+          "message": [
+            "사랑하는 세은이와 교류하고 교감하는 것"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m0"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "세영: 수험공부"
+          }
+        },
+        "then": {
+          "message": [
+            "내가 원하는 대학, 원하는 학과에서 진학하기 위해 수능을 공부하는 것"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m0"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "철수: 짝사랑"
+          }
+        },
+        "then": {
+          "message": [
+            "누군가를 나혼자 좋아하는 마음을 가지고 있는 것"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m0"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "answer1"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer1",
+    "context": {
+      "Dialog": {
+        "state": "answer1"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님이 {Dialog_activity} 활동을 시작한 계기가 있나요?(1)"
+          ],
+          "platform": {
+            "tree": {
+              "growthProgress": 1
+            },
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          },
+          "context": {
+            "Dialog": {
+              "state": "m1"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m1",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "도움말"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 어떠한 이유로 시작하게 되었나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m1"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "영철: 독서"
+          }
+        },
+        "then": {
+          "message": [
+            "내 주변에는 내가 관심있는 것에 대해 이야기를 나눌 만한 사람이 없어서"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m1"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "건우: 연애"
+          }
+        },
+        "then": {
+          "message": [
+            "삶을 살아가는데 있어서 사람과의 깊고 애정어린 관계는 필요하다고 생각해서"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m1"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "세영: 수험공부"
+          }
+        },
+        "then": {
+          "message": [
+            "내가 배우고 싶은 분야를 공부하기 위해서는 대학이라는 곳에 입학해야한다고 들었기 때문이야"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m1"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "철수: 짝사랑"
+          }
+        },
+        "then": {
+          "message": [
+            "잘 모르겠어....",
+            "그냥 어느 순간 그 사람이 좋아지기 시작했어"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m1"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "answer2"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer2",
+    "context": {
+      "Dialog": {
+        "state": "answer2"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동은 주로 언제 그리고 어디서 하나요?(2)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m2"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m2",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "도움말"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동하는 장소나 시간을 알려주세요."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m2"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "영철: 독서"
+          }
+        },
+        "then": {
+          "message": [
+            "조용한 새벽이나 밤에 주로 도서관이나 혼자 있을 수 있는 공간에서 책을 읽어"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m2"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "건우: 연애"
+          }
+        },
+        "then": {
+          "message": [
+            "다양한 장소와 시간에서 이곳 저곳을 돌아다니면서 연애를 하고 있어"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m2"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "세영: 수험공부"
+          }
+        },
+        "then": {
+          "message": [
+            "학교나 독서실에서 먹고자고 움직이는 시간을 제외한 대부분의 시간에"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m2"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "철수: 짝사랑"
+          }
+        },
+        "then": {
+          "message": [
+            "학교에서 그 사람을 볼 때?",
+            "흠...그냥 언제 어디서든 상관없이 그 사람이 생각나",
+            "딱히 구분이 없는 것 같아"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m2"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "answer3"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer3",
+    "context": {
+      "Dialog": {
+        "state": "answer3"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 할 때 {User_name}님의 표정은 어떤가요?(3)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m3"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m3",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "도움말"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 할 때에 사용자님이 어떠한 얼굴 표정을 하고 있는지 어떠한 감각을 느끼고 있는지 떠올려보세요.",
+            "활동을 하면서 이럴 때에는 어떤 표정을 짓고 저럴 때는 어떤 표정을 짓나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m3"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "영철: 독서"
+          }
+        },
+        "then": {
+          "message": [
+            "생각에 잠긴 얼굴, 심각한 얼굴, 놀라운 얼굴, 슬픈 얼굴, 감동한 얼굴"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m3"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "건우: 연애"
+          }
+        },
+        "then": {
+          "message": [
+            "대부분 기쁘고 즐거운 얼굴이지만, 가끔은 슬프고 힘든 표정을 짓기도 해"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m3"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "세영: 수험공부"
+          }
+        },
+        "then": {
+          "message": [
+            "문제를 풀 때는 집중하거나 생각하는 중이라 심각하거나 무표정일 때가 많고",
+            "문제를 풀었거나 시험 점수가 잘 나왔을 때는 즐거운 표정이고",
+            "문제가 틀리면 썩 유쾌한 표정을 짓지는 않았던 것 같아"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m3"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "철수: 짝사랑"
+          }
+        },
+        "then": {
+          "message": [
+            "설래이고 두근되는 표정을 짓지만 이 마음을 들키지 않으려고 애써 아닌 표정을 지었어."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m3"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "answer4"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer4",
+    "context": {
+      "Dialog": {
+        "state": "answer4"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 할 때, {User_name}님은 어떠한 느낌이나 생각이 들어요?(4)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m4"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m4",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "도움말"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 할 때, 어떠한 기분인지 무슨 생각을 하시는지 떠올려보세요.",
+            "왜 그러한 기분과 생각이였는지도 떠올려보세요.",
+            "그 때 {User_name}님은 어떠한 상태셨나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m4"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "영철: 독서"
+          }
+        },
+        "then": {
+          "message": [
+            "이 사람은 이것에 대해 이렇게 생각하는누가",
+            "흠.. 이 사람은 이러한 관점으로 세상을 바라보는구나",
+            "와.... 엄청나다. 어떻게 이런 생각을 할 수 있지? 놀라운 걸? 짜릿해!",
+            "내가 관심있는 것을 깊이있게 알아가는 과정에서 많은 것을 보고 느꼈던 것같아."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m4"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "건우: 연애"
+          }
+        },
+        "then": {
+          "message": [
+            "기쁘고 행복해. 어떻게 이렇게 잘 맞는 사람이 세상에 존재할 수 있는지 믿기지가 않아!",
+            "귀엽고 사랑스러워!",
+            "고마웠던 적, 감동먹은 적도 많은 것 같아.",
+            "얘도 나와 같을까?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m4"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "세영: 수험공부"
+          }
+        },
+        "then": {
+          "message": [
+            "이 문제를 해결하기 위해서는 어떻게 접근하고 무엇을 떠올려야 할까?",
+            "왜 이 문제를 틀렸을까? 어디가 잘못된 것일까? 내가 무엇을 잘못 생각했던 것일까?",
+            "정말 흥미로운 문제인걸?",
+            "이런 걸 문제라고 낸거야?!",
+            "아... 수능이 언제지?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m4"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "철수: 짝사랑"
+          }
+        },
+        "then": {
+          "message": [
+            "좋다.....",
+            "걔는 지금 뭐하고 있을까?",
+            "어떻게 하면 그 아이와 가까워 질 수 있을까?",
+            "그 아이만 생각하면 설레이고 두근거리고 좋았던거 같아. 어떻게 하면 더 친해질 수 있을지, 가까워질 수 있을지 고민도 많이 했던 것 같아. 그래서 더 좋은 사람이 되려고 더욱 노력하고 공부도 열심히 했어."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m4"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "answer5"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer5",
+    "context": {
+      "Dialog": {
+        "state": "answer5"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님이 {Dialog_activity} 활동을 할 때만 나타나는 특이한 점이 있나요?(5)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m5"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m5",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "도움말"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동과 다른 활동들을 할 때의 차이가 있나요?",
+            "그 활동을 할 때에만 보이는, 느껴지는 것들이 있나요?",
+            "눈에 띄는 것들은 무엇이 있나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m5"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "영철: 독서"
+          }
+        },
+        "then": {
+          "message": [
+            "다른 활동을 할 때보다 엄청 자유롭게 생각하고 표현했어.",
+            "내가 가장 나다워질 수 있는 활동들 중 하나였던 것 같아."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m5"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "건우: 연애"
+          }
+        },
+        "then": {
+          "message": [
+            "내가 가장 감각적, 감정적으로 활발해지는 순간이야",
+            "그 어느때보다 누군가에게 나 자신을 표현하고 말이 많아지는 순간인 것 같아.",
+            "눈물도 많아지고 마음도 풀어져"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m5"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "세영: 수험공부"
+          }
+        },
+        "then": {
+          "message": [
+            "가장 내가 차분하고 조용할 때야",
+            "가장 신경이 예민해지고 쌀쌀맞게 반응을 해. 이로 인해 나에게 말 걸었다고 마음에 상처를 받았다는 친구도 있었어.",
+            "가장 방해를 받고 싶지 않고 공부 하나에만 집중하고 싶어해."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m5"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "철수: 짝사랑"
+          }
+        },
+        "then": {
+          "message": [
+            "그 어느 때보다 설래이고 가슴이 두근거렸던 순간이야",
+            "세상을 긍정적으로 보았던 것 같아",
+            "그러나 이러한 마음을 남들에게 들키지 않으려고 숨기려했던 것 같아."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m5"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "도움말",
+              "영철: 독서",
+              "건우: 연애",
+              "세영: 수험공부",
+              "철수: 짝사랑"
+            ]
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "answer6"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer6",
+    "context": {
+      "Dialog": {
+        "state": "answer6"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동과 관련된 {User_name}님의 인상깊은 경험을 하나 이야기해 주세요.",
+            "날씨, 분위기, 상황, 의상, 표정, 시기, 장소 등등을 상세히 떠올려보세요.(6)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m6"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m6",
+    "context": {
+      "Dialog": {
+        "state": "answer7"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer7",
+    "context": {
+      "Dialog": {
+        "state": "answer7"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "그렇군요.",
+            "그렇다면 지금도 {Dialog_activity} 활동을 계속 하고 계신가요?(7)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m7"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "응",
+              "아니"
+            ]
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m7",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "응"
+          }
+        },
+        "then": {
+          "message": [
+            "요즘의 {Dialog_activity} 활동은 어떠한 기분이나 느낌, 생각이 들어요?",
+            "예전과 똑같나요?(7 - 1)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m72"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "아니"
+          }
+        },
+        "then": {
+          "message": [
+            "왜 요즘은 안하시나요? 무슨 일이 있었나요?(7-2)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m72"
+            }
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "m72"
+      }
+    }
+  },
+  {
+    "state": "m72",
+    "context": {
+      "Dialog": {
+        "state": "answer8"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer8",
+    "context": {
+      "Dialog": {
+        "state": "answer8"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "그렇군요.",
+            "{User_name}님이 생각하시기에",
+            "{Dialog_activity}에 대한 이야기 속에 {User_name}님은 무엇을 중요시 여기는 사람인 것 같나요?",
+            "무엇을 위해 {Dialog_activity} 활동을 하시나요?(8)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m8"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m8",
+    "context": {
+      "Dialog": {
+        "state": "answer9"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer9",
+    "context": {
+      "Dialog": {
+        "state": "answer9"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "그런데 혹시 {User_name}님이 {Dialog_activity} 하는 걸 방해하는 건 있을까요?",
+            "혹은 {User_name}님이 하고자 하는 것을 방해하는 것이 있나요?",
+            "있다면 (9)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m9"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m9",
+    "context": {
+      "Dialog": {
+        "state": "answer10"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer10",
+    "context": {
+      "Dialog": {
+        "state": "answer10"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "정말 흥미있는 이야기네요!",
+            "이제는 {User_name}님의 {Dialog_activity} 활동이 {User_name}님 자신과 주변에 어떤 영향을 미쳤는지에 대해 이야기해보고 싶어요.",
+            "{Dialog_activity} 활동을 하게 되면서 {User_name}님은 어떻게 변했나요?",
+            "{User_name}의 마음가짐, 삶의 태도, 알게 된 점, 성격, 삶의 방식, 좋아하게 된 것, 싫어하게 된 것 등등에 대해서 이야기해주세요.(10)"
+          ],
+          "platform": {
+            "tree": {
+              "growthProgress": 2
+            }
+          },
+          "context": {
+            "Dialog": {
+              "state": "m10"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m10",
+    "context": {
+      "Dialog": {
+        "state": "answer11"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer11",
+    "context": {
+      "Dialog": {
+        "state": "answer11"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "그렇군요.",
+            "그렇다면 {Dialog_activity} 활동을 하면서 {User_name}의 주변은 어떻게 변했나요?",
+            "{Dialog_activity} 활동을 통해 새로운 인간관계를 맺어봤나요?",
+            "아니면, 그 활동으로 주변인들과의 관계가 변한 적이 있나요?",
+            "가족, 학교, 직장, 친구, 이웃들과의 관계 변화를 생각해보세요.(11)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m11"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m11",
+    "context": {
+      "Dialog": {
+        "state": "answer12"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer12",
+    "context": {
+      "Dialog": {
+        "state": "answer12"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "왜 그렇게 변했을까요?",
+            "{Dialog_activity} 활동이 이러한 변화에 어떠한 영향을 미쳤나요?(12)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m12"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m12",
+    "context": {
+      "Dialog": {
+        "state": "answer13"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer13",
+    "context": {
+      "Dialog": {
+        "state": "answer13"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "platform": {
+            "tree": {
+              "growthProgress": 3
+            }
+          },
+          "message": [
+            "{Dialog_activity} 활동을 계속해서 하게되면 {User_name}님의 삶은 어떻게 변할까요?",
+            "왜 그렇게 변했을까요(13)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m13"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m13",
+    "context": {
+      "Dialog": {
+        "state": "answer14"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer14",
+    "context": {
+      "Dialog": {
+        "state": "answer14"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 좀 더 일찍 시작했다면 {User_name}님의 삶은 어떻게 변했을까요?(14)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m14"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m14",
+    "context": {
+      "Dialog": {
+        "state": "answer15"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer15",
+    "context": {
+      "Dialog": {
+        "state": "answer15"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 말고도 {User_name}님이 비슷한 목적에서 하는 다른 활동들이 있나요?(15)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m15"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m15",
+    "context": {
+      "Dialog": {
+        "state": "answer16"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer16",
+    "context": {
+      "Dialog": {
+        "state": "answer16"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "만약 {Dialog_activity} 활동을 하지 않았다면 {User_name}님의 삶은 어땠을까요?(16)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m16"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m16",
+    "context": {
+      "Dialog": {
+        "state": "answer17"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer17",
+    "context": {
+      "Dialog": {
+        "state": "answer17"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 하는 것을 {User_name}님의 소중한 사람이 보거나 안다면 그 분은 이를 어떻게 여길까요?(17)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m17"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m17",
+    "context": {
+      "Dialog": {
+        "state": "answer18"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer18",
+    "context": {
+      "Dialog": {
+        "state": "answer18"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "왜 그렇게 생각하시나요?(18)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m18"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m18",
+    "context": {
+      "Dialog": {
+        "state": "answer19"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer19",
+    "context": {
+      "Dialog": {
+        "state": "answer19"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "platform": {
+            "tree": {
+              "growthProgress": 4
+            }
+          },
+          "message": [
+            "앞서 {Dialog_activity} 활동이 주는 영향에 대해서 다양한 이야기를 해 보았는데요.",
+            "이야기를 돌이켜봤을 때 어떤 감정이 느껴지나요?(19)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m19"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m19",
+    "context": {
+      "Dialog": {
+        "state": "answer20"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer20",
+    "context": {
+      "Dialog": {
+        "state": "answer20"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동이 {User_name}님에게 주었던 부정적인 영향은 없었나요?(20)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m20"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m20",
+    "context": {
+      "Dialog": {
+        "state": "answer21"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer21",
+    "context": {
+      "Dialog": {
+        "state": "answer21"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "지금과 같이 {Dialog_activity} 활동을 했으면 좋겠나요?",
+            "아니면 {Dialog_activity}에서 바뀌어야할 점이 있나요?(21)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m21"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m21",
+    "context": {
+      "Dialog": {
+        "state": "answer22"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer22",
+    "context": {
+      "Dialog": {
+        "state": "answer22"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "왜 그런 부분이 나아졌으면 좋겠나요?(22)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m22"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m22",
+    "context": {
+      "Dialog": {
+        "state": "answer23"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer23",
+    "context": {
+      "Dialog": {
+        "state": "answer23"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님의 노력을 방해하는 요소를 있나요?(23)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m23"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m23",
+    "context": {
+      "Dialog": {
+        "state": "answer24"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer24",
+    "context": {
+      "Dialog": {
+        "state": "answer24"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "보다 나은 {Dialog_activity} 활동을 위해 시도해볼 만한 것들은 무엇이 있을까요?(24)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m24"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m24",
+    "context": {
+      "Dialog": {
+        "state": "answer25"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer25",
+    "context": {
+      "Dialog": {
+        "state": "answer25"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "지금까지 긴 이야기를 해 보았죠.",
+            "{Dialog_activity}에 대한 이야기를 되돌아봤을 때, {User_name}님은 어떠한 것을 중요시 여기는 사람이었을까요?(25)"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "m25"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m25",
+    "context": {
+      "Dialog": {
+        "state": "answer26"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer26",
+    "context": {
+      "Dialog": {
+        "state": "answer26"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "지금까지의 얘기를 돌아보아요.",
+            "{User_name}님에게 있어서 {Dialog_activity} 활동을 한 마디로 표현하자면 어떻게 할 수 있을까요?(26)"
+          ],
+          "platform": {
+            "tree": {
+              "growthProgress": 5
+            }
+          },
+          "context": {
+            "Dialog": {
+              "state": "m26"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "m26",
+    "context": {
+      "Dialog": {
+        "state": "answer27"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer27",
+    "context": {
+      "Dialog": {
+        "state": "answer27"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "이번에는 그림으로도 표현해볼까요?(27)"
+          ],
+          "platform": {
+            "actions": [
+              "sketch"
+            ],
+            "quick_replies": [
+              "다음 질문으로"
+            ]
+          },
+          "context": {
+            "Dialog": {
+              "state": "answer28"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer28",
+    "context": {
+      "Dialog": {
+        "state": "answer28"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다음 질문으로"
+          }
+        },
+        "then": {
+          "message": [
+            "멋진 그림이네요.",
+            "{User_name}님과 {Dialog_activity}에 대해 얘기할 수 있어서 좋았어요.",
+            "다른 이야기에 대해서 더 듣고싶네요~",
+            "만약 지금까지 받았던 질문들 중 다시 질문받아 답변하고 싶으신 질문들이 있으시면 '다시 질문 받기' 버튼을 눌르시면 되어요!"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "answer29"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "다시 질문 받기"
+            ]
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다음 질문으로"
+      ]
+    }
+  },
+  {
+    "state": "answer29",
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다시 질문 받기"
+          }
+        },
+        "then": {
+          "message": [
+            "어떠한 질문을 다시 받고 싶으신가요?",
+            "질문 번호를 참조해주세요!"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "Final1"
+            }
+          },
+          "platform": {
+            "quick_replies": [
+              "0번",
+              "1번",
+              "2번",
+              "3번",
+              "4번",
+              "5번",
+              "6번",
+              "7번",
+              "7 - 1번",
+              "7 - 2번",
+              "8번",
+              "9번",
+              "10번",
+              "11번",
+              "12번",
+              "13번",
+              "14번",
+              "15번",
+              "16번",
+              "17번",
+              "18번",
+              "19번",
+              "20번",
+              "21번",
+              "22번",
+              "23번",
+              "24번",
+              "25번",
+              "26번",
+              "27번"
+            ]
+          }
+        }
+      }
+    ],
+    "context": {
+      "Dialog": {
+        "state": "Final1"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "0번",
+        "1번",
+        "2번",
+        "3번",
+        "4번",
+        "5번",
+        "6번",
+        "7번",
+        "7 - 1번",
+        "7 - 2번",
+        "8번",
+        "9번",
+        "10번",
+        "11번",
+        "12번",
+        "13번",
+        "14번",
+        "15번",
+        "16번",
+        "17번",
+        "18번",
+        "19번",
+        "20번",
+        "21번",
+        "22번",
+        "23번",
+        "24번",
+        "25번",
+        "26번",
+        "27번"
+      ]
+    }
+  },
+  {
+    "state": "Final1",
+    "context": {
+      "Dialog": {
+        "state": "Final1"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "0번"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님에게 {Dialog_activity} 활동은 어떤 뜻인가요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "1번"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님이 {Dialog_activity} 활동을 시작한 계기가 있나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "2번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동은 주로 언제 그리고 어디서 하나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "3번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 할 때 {User_name}님의 표정은 어떤가요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "4번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 할 때, {User_name}님은 어떠한 느낌이나 생각이 들어요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "5번"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님이 {Dialog_activity} 활동을 할 때만 나타나는 특이한 점이 있나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "6번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동과 관련된",
+            "{User_name}님의 인상깊은 경험을 하나 이야기해 주세요.",
+            "날씨, 분위기, 상황, 의상, 표정, 시기, 장소 등등",
+            "가능한 상세히 떠올려 이야기해주세요.",
+            "왜냐하면 이건 {User_name}님만의 이야기니까요.",
+            "이야기의 내용이 풍부해질수록 좋지 않을까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "7번"
+          }
+        },
+        "then": {
+          "message": [
+            "그렇다면 지금도 {Dialog_activity} 활동을 계속 하고 계신가요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "7 - 1번"
+          }
+        },
+        "then": {
+          "message": [
+            "요즘의 {Dialog_activity} 활동은 어떠한 기분이나 느낌, 생각이 들어요?",
+            "예전과 똑같나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "7 - 2번"
+          }
+        },
+        "then": {
+          "message": [
+            "왜 요즘은 안하시나요? 무슨 일이 있었나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "8번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity}에 대한 이야기 속에",
+            "{User_name}님은 무엇을 중요시 여기는 사람인 것 같나요?",
+            "무엇을 위해 {Dialog_activity} 활동을 하시나요?",
+            "가볍게 말해주세요."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "9번"
+          }
+        },
+        "then": {
+          "message": [
+            "그렇다면 혹시 {User_name}님이",
+            "{Dialog_activity} 하는 걸 방해하는 건 있을까요?",
+            "혹은 {User_name}님이 하고자 하는 것을 방해하는 것이 있나요?",
+            "가볍게 말해주세요.",
+            "만약",
+            "{User_name}님의 삶을 방해하는 문제에 대해서 자세히 얘기하고 싶으면",
+            "\"문제 나무 심기\"에서 따로 자세히 이야기할 수도 있어요."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "10번"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님이 해 주신 이야기, 정말 흥",
+            "이제는 {User_name}님의 {Dialog_activity} 활동이",
+            "{User_name}님 자신과 주변에",
+            "어떤 영향을 미쳤는지에 대해 이야기해보고 싶어요.",
+            "{Dialog_activity} 활동을 하게 되면서,",
+            "{User_name}님은 어떻게 변했나요?",
+            "{User_name}의 마음가짐, 삶의 태도, 알게 된 점, 성격, 삶의 방식, 좋아하게 된 것, 싫어하게 된 것 등등에",
+            "대해서 이야기해주세요."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "11번"
+          }
+        },
+        "then": {
+          "message": [
+            "그렇다면 {Dialog_activity} 활동을 하면서",
+            "{User_name}의 주변은 어떻게 변했나요?",
+            "{Dialog_activity} 활동을 통해 새로운 인간관계를 맺어봤나요?",
+            "아니면, 그 활동으로 주변인들과의 관계가 변한 적이 있나요?",
+            "가족, 학교, 직장, 친구, 이웃들과의 관계 변화를 생각해보세요."
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "12번"
+          }
+        },
+        "then": {
+          "message": [
+            "왜 그렇게 변했을까요?",
+            "{Dialog_activity} 활동이 이러한 변화에 어떠한 영향을 미쳤나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "13번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 계속해서 하게되면",
+            "{User_name}님의 삶은 어떻게 변할까요?",
+            "왜 그렇게 변했을까요"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "14번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 좀 더 일찍 시작했다면",
+            "{User_name}님의 삶은 어떻게 변했을까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "15번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 말고도 {User_name}님이 비슷한 목적에서 하는 다른 활동들이 있나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "16번"
+          }
+        },
+        "then": {
+          "message": [
+            "만약 {Dialog_activity} 활동을 하지 않았다면 {User_name}님의 삶은 어땠을까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "17번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동을 하는 것을 {User_name}님의 소중한 사람이 보거나 안다면",
+            "그 분은 이를 어떻게 여길까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "18번"
+          }
+        },
+        "then": {
+          "message": [
+            "왜 그렇게 생각하세요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "19번"
+          }
+        },
+        "then": {
+          "message": [
+            "앞서 {Dialog_activity} 활동이 주는 영향에 대해서",
+            "다양한 이야기를 해 보았는데,",
+            "이야기를 돌이켜봤을 때 어떤 감정이 느껴지나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "20번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity} 활동이",
+            "{User_name}님에게 주었던 부정적인 영향은 없었나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "21번"
+          }
+        },
+        "then": {
+          "message": [
+            "지금과 같이 {Dialog_activity} 활동을 했으면 좋겠나요?",
+            "아니면 {Dialog_activity}에서 바뀌어야할 점이 있나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "22번"
+          }
+        },
+        "then": {
+          "message": [
+            "왜 그런 부분이 나아졌으면 좋겠나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "23번"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님의 노력을 방해하는 요소를 있나요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "24번"
+          }
+        },
+        "then": {
+          "message": [
+            "보다 나은 {Dialog_activity} 활동을 위해 시도해볼 만한 것들은 무엇이 있을까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "25번"
+          }
+        },
+        "then": {
+          "message": [
+            "{Dialog_activity}에 대한 이야기를 되돌아봤을 때,",
+            "{User_name}님은 어떠한 것을 중요시 여기는 사람이었을까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "26번"
+          }
+        },
+        "then": {
+          "message": [
+            "{User_name}님에게 있어서 {Dialog_activity} 활동을",
+            "한 마디로 표현하자면 어떻게 할 수 있을까요?"
+          ],
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      },
+      {
+        "condition": {
+          "msg": {
+            "is": "27번"
+          }
+        },
+        "then": {
+          "message": [
+            "이번에는 그림으로도 표현해볼까요?"
+          ],
+          "platform": {
+            "actions": [
+              "sketch"
+            ]
+          },
+          "context": {
+            "Dialog": {
+              "state": "mFinal"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "0번",
+        "1번",
+        "2번",
+        "3번",
+        "4번",
+        "5번",
+        "6번",
+        "7번",
+        "7 - 1번",
+        "7 - 2번",
+        "8번",
+        "9번",
+        "10번",
+        "11번",
+        "12번",
+        "13번",
+        "14번",
+        "15번",
+        "16번",
+        "17번",
+        "18번",
+        "19번",
+        "20번",
+        "21번",
+        "22번",
+        "23번",
+        "24번",
+        "25번",
+        "26번",
+        "27번"
+      ]
+    }
+  },
+  {
+    "state": "mFinal",
+    "context": {
+      "Dialog": {
+        "state": "Final2"
+      }
+    },
+    "platform": {
+      "quick_replies": [
+        "다른 질문 다시 받기"
+      ]
+    }
+  },
+  {
+    "state": "Final2",
+    "context": {
+      "Dialog": {
+        "state": "Final2"
+      }
+    },
+    "branch": [
+      {
+        "condition": {
+          "msg": {
+            "is": "다른 질문 다시 받기"
+          }
+        },
+        "then": {
+          "context": {
+            "Dialog": {
+              "state": "Final"
+            }
+          }
+        }
+      }
+    ],
+    "platform": {
+      "quick_replies": [
+        "다른 질문 다시 받기"
+      ]
+    }
+  },
+  {
+    "state": "End",
+    "message": [
+      "..."
+    ],
+    "context": {
+      "Dialog": {
+        "state": "End"
+      }
+    }
+  }
+]
