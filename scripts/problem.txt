@@ -39,7 +39,7 @@ IF User_name exists False
   GOTO InputName
 
 
-STATE InputProblem
+STATE InputActivity
 : 게으름
 : 나태함
 : 완벽주의
