@@ -454,10 +454,6 @@ SET platform_tree_growthProgress 4
 
 
 STATE m19
- < 도움말
-   > 지금까지 {Dialog_activity} 활동에 대해 이야기를 해보았는데요.
-   > {User_name}님이 {Dialog_activity} 활동은 어떠한 의미를 가지나요?
-   GOTOSELF
 
 
 STATE answer20
