@@ -426,7 +426,7 @@ GOTO answer17
 
 STATE m17
  < 도움말
-   > 
+   > {User_name}님의 소중한 사람이 되었다고 상상하고 {User_name}님이 그 분에게 어떠한 모습으로 비춰질지 생각해보세요!
    > 또 사랑나무에서 소중한 사람 사람에 대해 더 이야기를 하실 수 있어요!!
    GOTOSELF
 
@@ -435,11 +435,12 @@ STATE answer18
 GOTO answer18
 < 다음 질문으로
   > 왜 그렇게 생각하시나요?(18)
+  > 만약 이전 질문에서 답하셨다면 넘어가시면 되어요~~
 
 
 STATE m18
  < 도움말
-   > 사용자님이
+   > {User_name}님의 소중한 사람은 {User_name}님으로부터 무엇을 보았기에, {User_name}님이 어떤 사람이라는 것을 알기에 그렇게 여긴다고 생각하시나요??
    GOTOSELF
 
 
@@ -448,13 +449,14 @@ GOTO answer19
 < 다음 질문으로
 SET platform_tree_growthProgress 4
   > 앞서 {Dialog_activity} 활동이 주는 영향에 대해서 다양한 이야기를 해 보았는데요.
-  > 이야기를 돌이켜봤을 때 어떤 감정이 느껴지나요?(19)
+  > 이야기를 돌이켜봤을 때 {Dialog_activity} 활동은 {User_name}님에게 어떠한 의미를 가지는 것 같나요?(19)
 
 
 
 STATE m19
  < 도움말
-   > 사용자님이
+   > 지금까지 {Dialog_activity} 활동에 대해 이야기를 해보았는데요.
+   > {User_name}님이 {Dialog_activity} 활동은 어떠한 의미를 가지나요?
    GOTOSELF
 
 
@@ -466,9 +468,6 @@ GOTO answer20
 
 
 STATE m20
- < 도움말
-   > 사용자님이
-   GOTOSELF
 
 
 STATE answer21
@@ -480,9 +479,6 @@ GOTO answer21
 
 
 STATE m21
- < 도움말
-   > 사용자님이
-   GOTOSELF
 
 
 STATE answer22
@@ -493,9 +489,6 @@ GOTO answer22
 
 
 STATE m22
- < 도움말
-   > 사용자님이
-   GOTOSELF
 
 
 STATE answer23
@@ -507,9 +500,7 @@ GOTO answer23
 
 
 STATE m23
- < 도움말
-   > 사용자님이
-   GOTOSELF
+
 
 
 STATE answer24
@@ -520,9 +511,7 @@ GOTO answer24
 		
 
 STATE m24
- < 도움말
-   > 사용자님이
-   GOTOSELF
+
 
 
 STATE answer25
@@ -536,9 +525,7 @@ GOTO answer25
 
 
 STATE m25
- < 도움말
-   > 사용자님이
-   GOTOSELF
+
 
 
 STATE answer26
@@ -551,9 +538,7 @@ SET platform_tree_growthProgress 5
 
 
 STATE m26
- < 도움말
-   > 사용자님이
-   GOTOSELF
+
 
 
 STATE answer27
