@@ -357,7 +357,7 @@ GOTO answer12
 
 STATE m12
  < 도움말
-   > ???
+   > 활동을 하면서 어떠한 깨달음이나 상태가 되었기에 {User_name}님이 변했을까요?
    GOTOSELF
 
 
@@ -379,26 +379,29 @@ STATE m13
 STATE answer14
 GOTO answer14
 < 다음 질문으로
+  > 우리 이번에는 {Dialog_activity} 활동을 지금처럼 하지않았다면 {User_name}님의 모습이 어떻게 변했을지 상상해보면서 이야기해봐요!
   > 만약 {Dialog_activity} 활동을 좀 더 일찍 시작했다면 {User_name}님의 삶은 어떻게 변했을까요?(14)
 
 
 
 STATE m14
  < 도움말
-   > 
+   > {Dialog_activity} 활동을 몇 년 일찍 시작했다면 {User_name}님은 더 좋아졌을까요? 아니면 나빠졌을까요?
    GOTOSELF
 
 
 STATE answer15
 GOTO answer15
 < 다음 질문으로
-  > {Dialog_activity} 말고도 {User_name}님이 비슷한 목적에서 하는 다른 활동들이 있나요?(15)
+  > {Dialog_activity} 활동을 하는 이유나 목적과 같거나 비슷한 활동을 하시는 것이 더 있나요? 그것은 무엇인가요?
 
 
 
 STATE m15
- < 도움말
-   > 사용자님이
+< 도움말
+  > 만약 있다면 그것은 또다른 경험나무의 이야기소재가 될 수 있어요!
+  > 없으시면 없다고 말하시고 넘아가시면 돼요~
+   
    GOTOSELF
 
 
@@ -409,20 +412,22 @@ GOTO answer16
 
 STATE m16
  < 도움말
-   > 사용자님이
+   > {Dialog_activity} 활동 대신 다른 활동으로 무엇을 하셨을 것 같으세요?
+   > 그랬다면 {User_name}님의 삶은 어떻게 달라졌을까요? 무엇이 변했을까요? 지금 어떠한 모습이나 상황일까요?
    GOTOSELF
 
 
 STATE answer17
 GOTO answer17
 < 다음 질문으로
-  > {Dialog_activity} 활동을 하는 것을 {User_name}님의 소중한 사람이 보거나 안다면 그 분은 이를 어떻게 여길까요?(17)
+  > 만약 {Dialog_activity} 활동을 하는 것을 {User_name}님의 소중한 사람이 보거나 안다면 그 분은 이를 어떻게 여길까요?(17)
 
 
 
 STATE m17
  < 도움말
-   > 사용자님이
+   > 
+   > 또 사랑나무에서 소중한 사람 사람에 대해 더 이야기를 하실 수 있어요!!
    GOTOSELF
 
 
