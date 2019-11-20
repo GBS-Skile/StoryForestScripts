@@ -139,7 +139,7 @@ STATE m3
   GOTOSELF
 < 대답예시: 성장
   > 독서를 하면서 나 자신에 대해서 다시 한번 돌아보기도 하고, 일기도 꾸준히 쓰면서 하루하루를 나의 것으로 만들기도 했어
-  > 다양한 사람들과 만나고 이야기하면서
+  > 다양한 사람들과 만나고 이야기하면서 그들을 이해하려고 하고 이해받으면서 보다 나은 사람이 되려고 노력했어
   GOTOSELF
   
   
@@ -156,7 +156,8 @@ GOTOSELF
 
 STATE m4
 < 도움말
-  > 
+  > 같은 가치를 위해 했던 활동들이지만 같은 점도 있고 다른 점도 있을것 같아요
+  > 그리고 다르다면 왜 다를까요? 무엇이 그것들을 같게하고 다르게 하는 걸까요?
   GOTOSELF
 
 
@@ -173,9 +174,6 @@ GOTOSELF
 
 
 STATE m5
-< 도움말
-  >
-  GOTOSELF
 
 STATE 6
 GOTOSELF
@@ -187,9 +185,7 @@ GOTOSELF
 
 
 STATE m6
-< 도움말
-  >
-  GOTOSELF
+
 
 STATE 7
 GOTOSELF
@@ -210,9 +206,7 @@ GOTOSELF
 
 
 STATE m8
-< 도움말
-  >
-  GOTOSELF
+
 
 STATE 9
 GOTOSELF
@@ -222,9 +216,6 @@ GOTOSELF
 
 
 STATE m9
-< 도움말
-  >
-  GOTOSELF
 
 STATE 10
 GOTOSELF
@@ -236,11 +227,9 @@ GOTOSELF
 
 
 STATE m10
-< 도움말
-  >
-  GOTOSELF
 
-# 11은 
+
+# 11은 예전부터 
 
 STATE 12
 GOTOSELF
